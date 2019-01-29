@@ -1,25 +1,29 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
 
 class App extends Component {
+  state = {
+    city: ''
+  };
+
+  selectCityHandler() {
+
+  }
+
   render() {
+    let output = null;
+    if (this.state.city) {
+      output = <p>Погода</p>
+    } else {
+      output =
+        <div>
+          <p>Вы не выбрали город</p>
+          <button onClick={this.selectCityHandler.bind(this)}>Выбрать</button>
+        </div>
+    }
+
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        {output}
       </div>
     );
   }
