@@ -112,5 +112,8 @@
     "presets": [
       "react-app"
     ]
+  },
+  "devDependencies": {
+    "prettier": "1.16.4"
   }
 }

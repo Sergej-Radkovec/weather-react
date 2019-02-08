@@ -1,0 +1,25 @@
+.Loader {
+    display: absolute;
+    width: 150px;
+    height: 150px;
+    margin: auto;
+}
+.Loader:after {
+    content: " ";
+    display: block;
+    width: 100px;
+    height: 100px;
+    margin: 1px;
+    border-radius: 50%;
+    border: 10px solid #ffccff;
+    border-color: rgb(64, 98, 172) transparent rgb(118, 150, 255) transparent;
+    animation: Loader 2s linear infinite;
+}
+@keyframes Loader {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
