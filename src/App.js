@@ -19,8 +19,23 @@ class App extends Component {
     });
   }
 
+  getLocalWeather = async () => {
+    const position = await this.getPosition();
+    const coords = await position.coords;
+    const res = await fetch(
+      `https://api.openweathermap.org/data/2.5/forecast?lat=${coords.latitude}&lon=${coords.longitude}&APPID=${keyID}&units=metric&lang=ru`
+    );
+    const data = await res.json();
+    this.setState({
+      data: data
+    })
+  };
+
   componentDidMount() {
-    this.getPosition()
+
+    this.getLocalWeather();
+
+    /*this.getPosition()
       .then(location => location.coords)
       .then(coords => {
         return fetch(
@@ -32,7 +47,7 @@ class App extends Component {
         this.setState({
           data: data
         })
-      })
+      })*/
   }
 
   changeShownInfoHandler(num) {
@@ -42,7 +57,7 @@ class App extends Component {
   }
 
   render() {
-    let info = <Spinner/>
+    let info = <Spinner/>;
 
     if (this.state.data) {
       const timeDayWeather = this.state.data.list.filter((v, i) => {
