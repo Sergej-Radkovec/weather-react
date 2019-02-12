@@ -14,7 +14,7 @@ class App extends Component {
   };
 
   getPosition(options) {
-    return new Promise(function (resolve, reject) {
+    return new Promise((resolve, reject) => {
       navigator.geolocation.getCurrentPosition(resolve, reject, options);
     });
   }
@@ -26,14 +26,16 @@ class App extends Component {
       `https://api.openweathermap.org/data/2.5/forecast?lat=${coords.latitude}&lon=${coords.longitude}&APPID=${keyID}&units=metric&lang=ru`
     );
     const data = await res.json();
-    this.setState({
-      data: data
-    })
+    return data;
   };
 
   componentDidMount() {
 
-    this.getLocalWeather();
+    this.getLocalWeather().then((data) => {
+      this.setState({
+        data: data
+      })
+    });
 
     /*this.getPosition()
       .then(location => location.coords)
